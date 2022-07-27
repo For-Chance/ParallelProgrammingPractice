@@ -16,14 +16,15 @@
 int main(int argc, char *argv[])
 {
     int sum = 0;
+    double tt = omp_get_wtime();
 #pragma omp parallel for
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 10000000; i++)
     {
 // #pragma omp critical
 #pragma omp atomic
         sum += i;
     }
-    printf("sum: %d\n", sum);
+    printf("sum: %d, cost time = %f\n", sum, omp_get_wtime() - tt);
     system("pause");
     return 0;
 }
